@@ -37,11 +37,11 @@ int main()
     // address.sin_port = htons(INSTRUCTOR_REGISTRY_PORT);
     // int bajs = inet_pton(AF_INET, INSTRUCTOR_REGISTRY_IP, &address.sin_addr);
 
-    // address.sin_port = htons(STUDENT_SERVER_PORT);
-    // int bajs = inet_pton(AF_INET, MY_SERVER_IP_STRING, &address.sin_addr);
+    address.sin_port = htons(STUDENT_SERVER_PORT);
+    int bajs = inet_pton(AF_INET, MY_SERVER_IP_STRING, &address.sin_addr);
 
-    address.sin_port = htons(Richard_PORT);
-    int bajs = inet_pton(AF_INET, RICHARD_IP_STRING, &address.sin_addr);
+    // address.sin_port = htons(Richard_PORT);
+    // int bajs = inet_pton(AF_INET, RICHARD_IP_STRING, &address.sin_addr);
 
     if (bajs < 0)
     {
