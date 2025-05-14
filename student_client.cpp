@@ -8,13 +8,14 @@
 #include <vector>
 
 #define STUDENT_SERVER_PORT 15500
-#define INSTRUCTOR_REGISTRY_IP "172.16.219.46"
-#define INSTRUCTOR_REGISTRY_PORT 12345
 #define MY_SERVER_IP_STRING "172.17.0.2"
+#define INSTRUCTOR_REGISTRY_IP "172.16.217.188"
+#define INSTRUCTOR_REGISTRY_PORT 8080
 #define Richard_PORT 16000
 #define RICHARD_IP_STRING "172.16.219.155"
 int main()
 {
+
     int mysocket = socket(AF_INET, SOCK_STREAM, 0);
     if (mysocket < 0)
     {
@@ -61,6 +62,37 @@ int main()
     std::string message_to_send = my_server_ip + ":" + std::to_string(my_server_port) + " Gustav";
 
     send(mysocket, message_to_send.c_str(), message_to_send.length(), 0);
+    std::string recieved;
+    recv(mysocket, &recieved, recieved.length(), 0);
     std::cout << "Sent to Registry Server: " << message_to_send << std::endl;
+    int start = 0;
+    int end = 0;
+    do
+    {
+        start++;
+        sleep(1);
+        if (start >= 10)
+        {
+            send(mysocket, message_to_send.c_str(), message_to_send.length(), 0);
+            std::string recieved;
+            recv(mysocket, &recieved, recieved.length(), 0);
+            std::cout << "Sent to Registry Server: " << message_to_send << std::endl;
+            start = 0;
+            end++;
+        }
+
+    } while (end <= 5);
     close(mysocket);
 }
+
+/*
+
+ g++ -o student_server student_server.cpp -std=c++11
+
+ ./student_server
+
+ g++ -o student_client student_client.cpp -std=c++11
+
+ ./student_client
+
+*/
