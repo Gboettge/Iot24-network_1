@@ -17,6 +17,9 @@ add_executable(client
 client.cpp
 )
 
+find_package(Threads REQUIRED)
+target_link_libraries(server PRIVATE Threads::Threads)
+
 # Cmake instucions https://cmake.org/cmake/help/latest/guide/tutorial/A%20Basic%20Starting%20Point.html
 
 
@@ -26,3 +29,4 @@ client.cpp
 # make
 # ./server
 # ./client
+# chmod +x ./server

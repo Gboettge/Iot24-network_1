@@ -76,9 +76,9 @@ int main()
         return 0;
     }
 
-    int scenarios;
-    std::cout << "\n Choose scenarios (1-4, other number to quit): ";
-    std::cin >> scenarios;
+    int scenarios = 1;
+    // std::cout << "\n Choose scenarios (1-4, other number to quit): ";
+    // std::cin >> scenarios;
 
     memset(buffer, 0, BUFFER_SIZE);
 
