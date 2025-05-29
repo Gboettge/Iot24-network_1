@@ -1,21 +1,25 @@
 cmake_minimum_required(VERSION 3.18.4)
 
-set(CMAKE_CXX_STANDARD 11) #sätter standard till 11
+#set c++ standar to c++11
+set(CMAKE_CXX_STANDARD 11) 
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-# Aktivera varningar
+
 add_compile_options(-Wall -Wextra -pedantic)
 
+#project name
 project(server)
 
+# converts robust_server.cpp to: server when compiling to make ease
 add_executable(server
-
 robust_server.cpp
-
 )
+
+#same with client so i cant type only ./client
 add_executable(client
 client.cpp
 )
+
 
 find_package(Threads REQUIRED)
 target_link_libraries(server PRIVATE Threads::Threads)
@@ -24,9 +28,14 @@ target_link_libraries(server PRIVATE Threads::Threads)
 
 
 # COMMANDS:
+# cmake -S . -B build
+# cd build
 # mkdir server_build
 # cmake --build .
 # make
 # ./server
 # ./client
 # chmod +x ./server
+
+# chmod +x multiple_clients.sh
+# ./multiple_clients.sh

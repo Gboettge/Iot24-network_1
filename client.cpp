@@ -76,9 +76,9 @@ int main()
         return 0;
     }
 
-    int scenarios = 1;
-    // std::cout << "\n Choose scenarios (1-4, other number to quit): ";
-    // std::cin >> scenarios;
+    int scenarios;
+    std::cout << "\n Choose scenarios (1-4, other number to quit): ";
+    std::cin >> scenarios;
 
     memset(buffer, 0, BUFFER_SIZE);
 
@@ -111,6 +111,35 @@ int main()
         const char *garbage = "TEST_GARBAGE";
         send(sock, garbage, strlen(garbage), 0);
         std::cout << "Sent: " << garbage << std::endl;
+    }
+    else if (scenarios == 5)
+    {
+        int u = 3;
+        for (int i = 0; i < u; i++)
+        {
+            const char *garbage = "TEST_GARBAGE\n";
+            send(sock, garbage, strlen(garbage), 0);
+            std::cout << "Sent: " << garbage << std::endl;
+            sleep(3);
+        }
+    }
+    else if (scenarios == 6)
+    {
+        // const char *garbage = "TEST_GARBAGEEEEEEEEEE";
+        std::string test_message(1023, 'A');
+        send(sock, test_message.c_str(), test_message.size(), 0);
+        std::cout << "Sent: " << test_message << std::endl;
+        int u = 200;
+        // for (int i = 0; i < u; i++)
+        // {
+        //     for (int j = 0; j < 10; j++)
+        //     {
+        //     }
+
+        // }
+        sleep(3);
+        const char *garbage = "TEST_GARBAGE\n";
+        send(sock, garbage, strlen(garbage), 0);
     }
     else
     {
